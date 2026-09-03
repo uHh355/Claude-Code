@@ -1,0 +1,48 @@
+<style>
+.mock-a{display:grid;grid-template-columns:minmax(0,.72fr) 44px minmax(0,3.3fr);grid-template-rows:auto auto;column-gap:0;row-gap:16px;margin-top:34px;align-items:center;--path-line:rgba(89,121,119,.42)}
+.mock-a .entry{grid-row:1;grid-column:1;background:#ffffffc7;border:1px solid var(--line);box-shadow:0 10px 26px #0f36390f;padding:22px 22px 24px}
+.mock-a .entry .path-meta{font-size:12px}
+.mock-a .entry h3{display:flex;align-items:baseline;gap:9px;margin:14px 0 0;color:var(--teal-700);font-family:var(--font-serif);font-size:22px;line-height:1.35}
+.mock-a .entry h3 span{color:var(--teal-400);font-family:var(--font-display);font-size:15px}
+.mock-a .entry p:last-child{margin:14px 0 0;color:var(--ink-2);font-size:14.5px;line-height:1.75}
+.mock-a .conn{grid-row:1;grid-column:2;align-self:stretch;background:linear-gradient(var(--path-line),var(--path-line)) center / 100% 1px no-repeat;position:relative}
+.mock-a .conn::after{content:"";position:absolute;right:-1px;top:50%;width:7px;height:7px;border-top:1px solid var(--teal-500);border-right:1px solid var(--teal-500);transform:translateY(-50%) rotate(45deg)}
+.mock-a .core{grid-row:1;grid-column:3;position:relative;background:var(--gradient-deep-radial);border:1px solid var(--teal-600);box-shadow:0 18px 40px #0f363929;padding:20px 22px 22px;color:#fff}
+.mock-a .core .lbl{color:var(--teal-150)}
+.mock-a .core .lbl strong{color:#fff;font-size:15px}
+.mock-a .core .lbl em{color:var(--teal-200)}
+.mock-a .core-steps{display:grid;grid-template-columns:minmax(0,1fr) 30px minmax(0,1fr) 30px minmax(0,1fr);margin-top:16px;align-items:stretch}
+.mock-a .core-steps article{background:rgba(255,255,255,.06);border:1px solid rgba(199,218,213,.24);padding:16px 18px 18px}
+.mock-a .core-steps .path-meta{color:var(--teal-200);font-size:11px}
+.mock-a .core-steps h3{display:flex;align-items:baseline;gap:9px;margin:12px 0 0;color:var(--teal-50);font-family:var(--font-serif);font-size:21px;line-height:1.35}
+.mock-a .core-steps h3 span{color:var(--teal-250);font-family:var(--font-display);font-size:15px}
+.mock-a .core-steps p:last-child{margin:12px 0 0;color:#edf3f1cc;font-size:14px;line-height:1.72}
+.mock-a .core-steps .h{background:linear-gradient(rgba(199,218,213,.45),rgba(199,218,213,.45)) center / 100% 1px no-repeat;position:relative}
+.mock-a .core-steps .h::after{content:"";position:absolute;right:-1px;top:50%;width:6px;height:6px;border-top:1px solid rgba(199,218,213,.85);border-right:1px solid rgba(199,218,213,.85);transform:translateY(-50%) rotate(45deg)}
+.mock-a .aux{grid-row:2;grid-column:3;display:grid;grid-template-columns:auto auto minmax(0,1fr) auto;align-items:center;column-gap:22px;background:var(--mist);border:1px solid #69999461;padding:13px 20px}
+.mock-a .aux .lbl strong{font-size:13px;color:var(--teal-600)}
+.mock-a .aux h3{display:flex;align-items:baseline;gap:8px;margin:0;color:var(--teal-700);font-family:var(--font-serif);font-size:18px}
+.mock-a .aux h3 span{color:var(--teal-400);font-family:var(--font-display);font-size:13px}
+.mock-a .aux p{margin:0;color:var(--ink-2);font-size:13.5px;line-height:1.6}
+.mock-a .aux small{font-family:var(--font-mono);font-size:10.5px;color:var(--teal-400);white-space:nowrap}
+</style>
+<div class="method-path mock-a" data-reveal>
+  <article class="entry"><p class="path-meta">DIAGNOSE · 起点</p><h3><span>01</span>企业诊断</h3><p>深入梳理企业业务流程，提炼能做、能推广、价值高的 AI 赋能场景，规划企业落地路线图。</p></article>
+  <span class="conn" aria-hidden="true"></span>
+  <section class="core">
+    <p class="lbl"><strong>核心产品</strong><span>CORE PRODUCT</span><em>先证明、后上线、终扩张</em></p>
+    <div class="core-steps">
+      <article><p class="path-meta">PROVE · 先证明</p><h3><span>02</span>最小可行交付（MVD）验证</h3><p>快速搭建交付演示，用企业真实历史数据回测，先验证投资回报，再决定是否落地。</p></article>
+      <span class="h" aria-hidden="true"></span>
+      <article><p class="path-meta">LAUNCH · 后上线</p><h3><span>03</span>智能体落地</h3><p>对接企业数据端口，搭建完整智能体。</p></article>
+      <span class="h" aria-hidden="true"></span>
+      <article><p class="path-meta">SCALE · 终扩张</p><h3><span>04</span>护航与扩张</h3><p>上线后 90 天持续答疑。用实测投资回报决定下一个智能体场景。</p></article>
+    </div>
+  </section>
+  <aside class="aux">
+    <p class="lbl"><strong>辅助产品</strong><span>SUPPORTING</span></p>
+    <h3><span>05</span>部门共创</h3>
+    <p>与部门骨干共创 AI 工作流。交付智能体技能、工作流、提示词等轻量成果。</p>
+    <small>可单独切入 · 轻量交付</small>
+  </aside>
+</div>
