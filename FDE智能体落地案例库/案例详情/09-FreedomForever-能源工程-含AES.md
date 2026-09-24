@@ -89,33 +89,54 @@
 
 ## 3. 落地过程（FDE 怎么做的）
 
-> 先说结论：公开资料里**没有"驻场观察/访谈一线许可专员"的描述**，也没有外部 FDE。这是客户方产品与工程团队自建的案例。下面按时间顺序还原能查证的步骤。
+> 先说结论：公开资料里**没有"驻场观察/访谈一线许可专员"的具体描述**，也没有外部 FDE。这是客户方产品与工程团队自建的案例。下面按时间顺序还原能查证的步骤。
+>
+> **关于 [S8] 播客引文的说明**：[S8] 是 Freedom Forever 自家播客《Solar Disruption Theory》2026-01-02 那期（61 分钟，主持人 Chad Towner，嘉宾 Bloom 和 Richardson，节目中提到录制时间是"end of 2025"）。节目没有文字稿，本轮下载原音频，用 Whisper 做了机器转写（全程用 base.en，关键段落再用 small.en 复核，两遍文字基本一致）。转写**不带说话人标注**，下文"Bloom 说 / Richardson 说"是按上下文推断的（例如主持人点名"Zach, how did we get to this point?"之后的回答）。**上屏字幕前请人工听一遍原音频核对**，时间码已标在每条引文后面。
+
+**第零步（前史，外部来源补充）：AI 之前，这个问题就被提过，因为"长尾"做不完而搁置**
+- 许可/并网邮件自动化，业务部门很早就提过。当年 NEM 政策推动时，软件团队只给 3 家电力公司的 3 类邮件写了专用规则，用了几周，能用。业务部门接着问能不能把剩下 3,000 家也做了，团队估计要 3 年，于是搁置。【外部来源 S8】（约 31:14–32:31，按上下文推断为 Bloom 所说）
+  > "We've been asked to automate interconnection and permitting emails and notifications for a very long time. … the amount of work it takes to cover all those different types of emails pre-AI is not, the juice is not worth the squeeze."
+  > "there's these three utilities, they send these three types of emails … So we went and built a very explicit function for those three, it took a couple weeks, and it worked. … Can you go do that for the other 3,000? … take that and you'll have it in three years."
+- AI 落地是一步步来的（播客里亲口讲的顺序）：① 最早是"项目摘要"，把 Lightspeed 里很长的项目备注一键浓缩成一段话，每次查询省 30 分钟，"That was several years ago now"（约 25:52–27:14，主持人所说）；② 接着做文件上传校验，先确认上传的"wasn't just a picture of their foot"（约 28:16）；③ 2025-06 上线 Raya，"Rob is the father of Raya"（约 22:27，按上下文推断为 Bloom 所说）；主持人还回忆 Richardson"integrated with, I think it was Claude"，做了一个发短信就能查公司任何数据的工具，"took you a couple of days to stand it up"（约 13:14–13:31）；④ "over the last couple of months"才进入"agent era"，让 AI 调用工具、做决策、操作系统（约 28:53–29:13）。【外部来源 S8】
+  - 注意：③ 里的"I think it was Claude"是主持人不太确定的回忆，只能说明 Claude 很早就被用于内部问答工具，不能据此断定 Raya 的底层模型。
+
+**内部"FDE"角色：产品团队做 discovery**
+- Bloom 形容 Richardson 的职责偏"前端"，带着一个团队专门做 discovery；做法是先承认自己不懂，再尽快变成屋里最懂的人。【外部来源 S8】（约 06:10–07:04）
+  > "once we've identified a problem, we are the dumbest people in the room to start. And I think where we've shown that we can, you know, add value is how quickly we're able to become the expert in the room."
+  > "Rob's responsibility lies more on that front end. He's got a whole team backing him to go do what we call discovery."
+- Richardson 回忆，他加入时软件团队约 10 人，常听到"做了几周几个月才发现做偏了"。【外部来源 S8】（约 09:43–10:06）："we spent weeks or months building a thing. And we kind of missed the mark."
 
 **第一步：定位"最难的问题"，不从最简单的场景下手**
 - 团队没有从简单场景开始试，而是围绕最难的问题做正式基准测试：在第三方网站上自动提交许可。【Claude原文】[C1]
   > "Freedom Forever built a formal benchmark around their hardest problem: automating permit submissions on third-party websites."
-- 搜索摘要中的另一种说法："他们从最乱的问题——许可积压——开始"（"started with their messiest problem - permit backlogs"）。【外部来源 S6】仅搜索结果摘要可见，未能打开原页，且无法确定这句话出自具体哪条帖文。
+- 第一轮引用过的"从最乱的问题——许可积压——开始"一句，本轮仍**无法打开出处**（S6 LinkedIn 个人页 ❌），已删除引文，不再作为事实使用。本轮两次 WebSearch 返回的摘要写法都是第三人称（"Rob Richardson wanted to … starting with their messiest problem"），更像别人发的帖子或转帖，不像 Richardson 本人的原话。
 
 **第二步：把现场的"脏环境"复刻成考场（8 个模拟网站 × 5 轮 × 录屏核验）**
 - 自建 8 个内部模拟网站，覆盖单页表单、多步流程、cookie/弹窗阻断、iframe、shadow DOM；每个网站跑 5 轮，把实际提交结果和预期结果比对，并录屏核验准确性。【Claude原文】[C1]
 - 被测对象包括"用其他智能体框架搭的应用"。原文没有点名是哪些框架。【Claude原文】[C1]："The team had explored alternatives, including building applications using other agent frameworks."
+  - 本轮补查：播客 [S8] 也没点名任何被比较的框架，Bloom 只说网页操作这一类问题"Right now it's some version of computer use or browser automation is kind of the key term"（约 41:10）。**被比较的框架名称：未找到公开信息。**（语音线另有一次选型：ElevenLabs 故事写 Freedom Forever 评估过"several voice and conversational AI architectures, including multimodal pipelines and real-time APIs"[S2]，这是语音客服线的选型，和本案的 Agent SDK 基准不是一回事。）
 - 用时约 3 周。【Claude原文】[C1]
 
 **第三步：选型结论出来后，2 周内上线第一批生产智能体**
 - "they launched their first production agents two weeks later"。【Claude原文】[C1]
 - 从开始做基准到首批上线，合计约 5 周（3 周 + 2 周，编剧按原文相加）。
 - 原文没有明确说"第一批生产智能体"具体是哪一个；只说许可邮件处理智能体是"量最大的部署"（"their highest-volume deployment"）。【Claude原文】[C1]
+- 本轮补查：播客 [S8] 讲"agent era"时列举了两条已上线的全流程：许可邮件处理（约 29:16–30:49，按上下文推断为 Richardson 所说），以及 7×24 小时盯金融公司门户里的变更单、自动回写 Lightspeed（约 39:48–40:43，Bloom 说"It's running as I'm speaking right now"），但**没有说哪一个最先上线**。"第一个上线的是哪个智能体"：仍未找到公开信息。
 
 **第四步：设计人机分工，智能体做分类、抽取和执行，人接住例外**
 - 许可邮件智能体的工作流：分类（检查通知、回执确认、缴费要求、整改要求等）→ 抽取相关数据 → 采取相应动作。【Claude原文】[C1]
   > "The system categorizes incoming messages … extracts relevant data, and takes appropriate action."
 - 对接自研 CRM，覆盖排期、任务完成、文件分析、**转人工**（human handoffs）。【Claude原文】[C1]
 - 分工比例：约 71% 的邮件全程无需人工；需要转人工的那部分，人的工作量也"大幅减少"。【Claude原文】[C1]
-- 原文**没有披露**：转人工的判断规则、人工复核是抽检还是全检、出错时怎么回滚。未找到公开信息。
+- 播客 [S8] 补充了许可邮件智能体的决策链和转人工逻辑（约 29:16–30:49，按上下文推断为 Richardson 所说）：读邮件 → 判断是批准、整改还是驳回 → 到自家数据库调出该辖区的规则 → 在大量项目里找到对的那一个（同名、同地址的客户可能不止一个，还要核对阶段、许可类型和辖区）→ 推进项目 → 判断不了就升级给人。
+  > "how do we decide is this an approval? Is it a correction? Is it a rejection? if it's these cases and it's in this jurisdiction, what do we do with it? Let's go into our database and pull out the rules"
+  > "how do you make sure it's the right project in the right stage, waiting for the right permit in that same jurisdiction? … And then when it can't, how do we escalate it to an expert, a person on our team to look at it"
+- 准确性顾虑从第一个 AI 功能就有：做项目摘要时就开始想"how do you validate it's actually accurate and how do you make sure that it's not just hallucinating"，后来在 AI 周边补了很多校验工作。【外部来源 S8】（约 27:55–28:13）
+- 仍**没有公开**：转人工的具体阈值或规则、人工复核是抽检还是全检、出错时怎么回滚。未找到公开信息。
 
 **第五步：回填历史数据，挖出隐藏积压**
 - 上线后对历史邮件做回填（backfill），发现平均积压 3 周的未处理邮件，涉及几十位客户，智能体推动了这些项目。【Claude原文】[C1]
-- 搜索摘要中也有同一叙述："found customers who'd been stuck waiting for three weeks without anyone knowing. The result was the fastest installation timelines in company history."【外部来源 S6】仅搜索结果摘要可见，未能打开原页
+- （第一轮在这里引用过 S6 搜索摘要里的同类说法；S6 原页打不开，已删除该引文。回填这件事以 [C1] 为准。）
 
 **第六步：平台化，建"智能体控制台"，让非开发者也能配置**
 - 在 SDK 上自建内部 "agent console" 来管理工作流。【Claude原文】[C1]
@@ -125,9 +146,10 @@
 **第七步：横向扩展到更多流程**
 - 文件校验智能体：约 1,500 份电费单，包括手持拍照件和图表数据；开启网页搜索补充信息，把学到的东西写回知识库。【Claude原文】[C1]
 - 销售支持智能体：从另一框架迁到 Claude Agent SDK，服务 1 万多名销售代表，支持电话和短信。【Claude原文】[C1]
-- 同一时期，公司还在用 ElevenLabs Agents 做语音客服/销售支持线（见 S2）。两者是什么关系（ElevenLabs 负责语音层、Claude 负责后端编排？还是先后替换？），**公开资料没有说明，未找到公开信息**。【外部来源 S2】仅搜索结果摘要可见
+- 同一时期，公司还在用 ElevenLabs Agents 做两条呼入语音线：销售支持和客户支持。先由一个路由智能体识别来电者类型，再分给专门的智能体；需要真人时带着完整通话记录转接。原型到生产用了一周。原句："A routing agent identifies the caller type and directs them to the specialized agent best suited for the request. When a human representative is needed, calls transfer with full transcript context"；"move to production in one week"。【外部来源 S2】✅
+- 两者是什么关系（ElevenLabs 负责语音层、Claude 负责后端编排？还是先后替换？），**公开资料没有说明，未找到公开信息**。线索有三条，都只是推测：Claude 原文说销售支持智能体是一条"电话或短信"呼入线 [C1]；Raya 新闻稿说 Raya 给销售伙伴提供"24/7 phone support"[S3]；播客里说 Richardson 用 Claude 做过"发短信就能查"的工具 [S8]。三者**很可能指同一条销售支持线的不同层**，但没有来源直接证实。【编剧建议】口播时不要说"Raya 就是 Claude 做的"。
 
-**关于"谁去的现场 / 观察了谁 / 访谈了谁"**：未找到公开信息。Claude 原文和可见的搜索摘要都没有描述跟岗观察许可专员、访谈电力公司对接人之类的环节。
+**关于"谁去的现场 / 观察了谁 / 访谈了谁"**：仍然没有找到具体的跟岗或访谈记录（比如跟着哪位许可专员看了几天）。能查到的只有方法层面的说法：产品团队做 discovery，"how quickly can you talk to people? How quickly can you understand the issue well enough to then come up with a solution?"【外部来源 S8】（约 06:40–06:50，Bloom）
 
 ---
 
