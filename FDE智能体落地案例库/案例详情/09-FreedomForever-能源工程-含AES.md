@@ -12,14 +12,16 @@
 > - 中文检索：未找到 36氪 / 机器之心 / 虎嗅 / 雷锋网 对 Freedom Forever × Claude 的中文报道；只找到搜狐转载的中国光伏行业协会日报对其破产的一句话报道 [S14]。
 
 - 行业：能源 / 户用光伏安装（EPC + 施工现场运营），claude.com 行业标签为 Energy [C1]
-- 企业规模 / 地区：约 3,000 名员工（大部分为现场作业和安装队），软件与产品团队 50 人；美国（North America）[C1]；每月处理约 5,000 份许可 [C1]；外部新闻稿摘要称业务覆盖"30 多个州"[S3，仅摘要]
+- 企业规模 / 地区：约 3,000 名员工（大部分为现场作业和安装队），软件与产品团队 50 人；美国（North America）[C1]；每月处理约 5,000 份许可 [C1]。员工数各来源口径不一：ElevenLabs 故事写"more than 2,500 employees"，另有"10,000 to 20,000 independent sales representatives"[S2]；Solar Power World 2026-04 写"over 3,600 employees"[S11]。覆盖州数：同一篇 Raya 新闻稿里既写"more than 30 states"又写"Operating in 29 states"[S3]；Solar Power World 2026-04 写"35 states, Puerto Rico and Washington, D.C."[S11]
+- **公司现状（重要）**：2026-04-15 申请 Chapter 11 破产，2026-08-07 转为 Chapter 7 清算 [S10][S13]（详见第 7 节）
 - Claude 产品标签：Claude Platform [C1]；正文提到的具体产品：Claude Agent SDK（主力智能体框架）、Claude Code（用于构建内部工具、基准测试和报表）、structured outputs（结构化输出）、web search（网页搜索）[C1]
 - Claude 故事发布日期：2026-01-30（取自 claude.com 客户故事 CMS 数据中的 `date` 字段；页面正文未显示日期）
 - Claude 原文链接：https://claude.com/customers/freedom-forever
-- 落地主体（谁是"FDE"）：**客户方内部团队自建**。Claude 原文只提到 Freedom Forever 自己的 50 人软件与产品团队、VP of Product Rob Richardson，以及"少数几个开发者"在 SDK 层开发 [C1]。**原文没有提到 Anthropic 或任何第三方实施团队驻场**，也没有找到 Freedom Forever 请外部 FDE/集成商的公开证据。搜索摘要另显示 CTO 为 Zachary Bloom，与 Richardson 共同推动这件事 [S6，仅摘要]。
-- 本案例推荐指数：**4 / 5**
+- 落地主体（谁是"FDE"）：**客户方内部团队自建**。Claude 原文只提到 Freedom Forever 自己的 50 人软件与产品团队、VP of Product Rob Richardson，以及"少数几个开发者"在 SDK 层开发 [C1]。**原文没有提到 Anthropic 或任何第三方实施团队驻场**，也没有找到 Freedom Forever 请外部 FDE/集成商的公开证据。CTO 是 Zachary（Zach）Bloom（新闻稿 [S3][S4][S5] 均写明 "Chief Technology Officer"）。公司自家播客 [S8] 里，Bloom 和 Richardson 两人一起讲了软件团队怎么用 AI 改造运营；Bloom 在播客里说 Richardson 带着一个团队专门做"discovery"（需求发现），这是本案例里最接近"FDE 进现场"的角色，只不过是公司内部的产品团队 [S8]。第一轮"CTO 与 Richardson 共同推动"的说法出自搜索摘要 [S6]，原页仍打不开；现在改由 [S3][S8] 支撑。
+- 本案例推荐指数：**3 / 5**（第一轮为 4/5，本轮下调）
   - 数字充分度 5/5：成功率、邮件量、单次成本、单次耗时、自动化率、上线周数都有。
-  - 过程/反转素材 4/5：选型反转、回填意外发现、二次迁移、瓶颈转移，这几个点 Claude 原文都写到了；扣 1 分是因为外部来源都没打开，而且没有公开的"踩坑细节"（比如哪家许可网站最难搞、上线初期出过什么错）。
+  - 过程/反转素材 4.5/5（上调）：除 Claude 原文里的选型反转、回填发现、二次迁移、瓶颈转移外，本轮从公司自家播客 [S8] 补到了一线负责人亲口讲的前史和踩坑：3 家电力公司写死规则、被要求扩到 3,000 家而搁置；Raya 上线后把 2018 年的过期文档翻出来，逼出"数据有人负责"；Lightspeed 规则从 100 个任务膨胀到 300 个又往回砍。仍缺：具体哪家许可网站最难搞、许可邮件智能体上线初期出过什么错。
+  - **下调理由（风险项）**：Claude 故事发布 2.5 个月后公司申请破产，8 月转清算，约 1,600 名员工被裁时未领到工资，另有得州总检察长调查和 WARN 法案集体诉讼 [S10][S12][S13]。"史上最快安装周期"和"公司倒闭"放在同一期视频里，评论区一定会追问。案例的方法论依然成立，但不能再当"成功企业"来讲。
   - 可迁移性 4/5：中国的"报建/并网/消防/环评"等多头审批 + 各地政务网站填报 + 邮件/短信通知，和美国光伏许可"几百家电力公司、几百个辖区各有各的网站"结构上很像【编剧建议】。
 
 ---
@@ -74,8 +76,12 @@
 | 核心 KPI | 安装周期是公司"最重要的指标" | 【Claude原文】[C1]："Installation timelines are our most important metric" |
 | 技术壁垒 | 第三方许可网站有 cookie 弹窗、iframe、shadow DOM、多步表单，传统 RPA 或早期智能体框架不稳 | 【Claude原文】[C1] |
 | 此前的 AI 尝试 | 只给一小部分开发者用过 AI 编码助手，没有用于业务流程 | 【Claude原文】[C1]："experimented with AI coding assistants for a small group of developers" |
-| 已有数字底座 | 公司有自研 CRM/运营引擎 Lightspeed（2022 年上线）；2025-06-24 发布基于 Lightspeed 的 AI 工具 Raya，给销售伙伴提供 24/7 电话支持和项目查询 | 【外部来源 S3】仅搜索结果摘要可见，未能打开原页 |
-| 支持线规模（另一供应商口径） | 每天数千通来电；销售支持线 120 多名坐席，客服线 90 名 | 【外部来源 S2】ElevenLabs 客户故事，仅搜索结果摘要可见，未能打开原页 |
+| 已有数字底座 | 公司有自研 CRM/运营引擎 Lightspeed（2022 年上线）；2025-06-24 发布基于 Lightspeed 的 AI 工具 Raya，给销售伙伴提供 24/7 电话支持和项目查询。原句："Built on Lightspeed, Freedom Forever's proprietary CRM and operational engine, Raya delivers real-time intelligence, automated issue resolution and 24/7 phone support to sales partners nationwide." | 【外部来源 S3】✅ PR Newswire 原页（S4、S5 两家行业媒体转述一致） |
+| Lightspeed 的来历 | 2022 年的播客节目介绍：Bloom 团队把 1,200 多份标准作业程序（SOP）做成了 Lightspeed。原句："he and his team turned over 1,200 standard operating procedures into the first CRM software custom-built for solar" | 【外部来源 S9】✅ 公司播客节目简介（RSS） |
+| 规则数据库（AI 的底座） | Bloom："maintained thousands of records of all the requirements to get a job what we would call built on paper."（员工多年手工维护各 AHJ、电力公司、金融公司的要求记录）；主持人："we have thousands of utilities or AHJs or even HOA data across the country." | 【外部来源 S8】✅ 播客音频，本轮机器转写 |
+| 许可"两头"是谁 | AHJ（有管辖权的机构）通常是地方政府办公室，负责发施工许可、做正式检查；电力公司另有并网协议和表计要求。原句："Your Authority having Jurisdiction, or AHJ for short is usually an office in your local government that has the authority to issue construction permits and perform official inspections." | 【外部来源 S7】✅ 公司博客（2020-12-18） |
+| 外部系统不通 API | Bloom：金融公司门户、电力公司门户、市政门户"don't have integrations, they don't have Webhooks, APIs"；外部系统里一有更新，就得有人去看、再回填到自家系统，"That is the baton toss, that is what moves projects forward. If you do that fast, you're fast. If you do that slow, you're slow." | 【外部来源 S8】✅ 播客音频，本轮机器转写 |
+| 支持线规模（另一供应商口径） | 第一轮写的"销售支持线 120 多名坐席，客服线 90 名"在本轮打开的页面里**均未找到**，已删除。可核对的是：高峰期最多 75% 的来电没人接，等待最长 25 分钟（2025-11-05 转载稿）；现行 ElevenLabs 页面只写"high-volume inbound support lines""tens of thousands of calls each month" | 【外部来源 S2】✅ ElevenLabs 现行页；【S2b】✅ blockchain.news 转载 |
 
 【编剧建议】可换算的"痛点数字"：每月 5,000 份许可，首月约 19,000 封许可邮件，平均每份许可约 3.8 封邮件（19,000 ÷ 5,000，编剧自算，两个数口径不完全相同：一个是每月许可数，一个是首月邮件数，只能作为量级参考）。
 
