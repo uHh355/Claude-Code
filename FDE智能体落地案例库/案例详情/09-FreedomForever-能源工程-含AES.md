@@ -3,7 +3,12 @@
 > 本槽位（制造/能源工业运营）评估了两个候选：(A) Freedom Forever 许可流程自动化；(B) AES 安全审计智能体。
 > **选定 A 作为主案例**。理由：按"落地过程可核实信息 + 清晰反转"的规则，A 的 Claude 原文本身就写明了选型过程（自建 8 个模拟网站做基准测试、其他框架 20–60% 成功率）、上线时间线（3 周测试 + 2 周上线）、人机分工（71% 全自动、其余转人工）、意外发现（回填时挖出平均积压 3 周的邮件）、二次迁移（销售支持智能体从其他框架迁过来）；B 的外部来源（Google Cloud 案例页）数字更扎实，但**没有任何公开的失败/转向信息**，反转只能靠编。B 放在文末附录。
 >
-> **检索环境说明（影响核实程度，请务必看）**：本次运行的网络出口代理只放行 claude.com / anthropic.com / cloud.google.com，LinkedIn、ElevenLabs、PR Newswire、Solar Builder、Solar Power World、freedomforever.com、aes.com 等全部返回 403，无法打开；且本会话 WebSearch 额度在检索中途用尽。因此，**Freedom Forever 的所有外部来源都只能拿到搜索引擎摘要，未能打开原页**，已在文中逐条标注。建议上线前由人工在正常网络下补开这些链接核对原句。
+> **核实状态说明（第二轮，2026-09-24，网络已放开）**：
+> - 第一轮 7 个未核实外部来源（S1–S7）逐条重开：**5 个 ✅**（S1 LinkedIn 帖子、S3 PR Newswire、S4 Solar Builder、S5 Solar Power World、S7 公司博客）；**S2 ElevenLabs 原链接 404**，已找到现行原页 https://elevenlabs.io/blog/freedom-forever 并核对（✅，但正文已改版，见下）；**S6 Rob Richardson LinkedIn 个人页 ❌**（LinkedIn 返回 999 反爬、WebFetch 被出口代理拦截、Wayback 无快照），据它引用的"started with their messiest problem"一句已从正文删除引号、降级为"未核实"。
+> - 本轮新增并已打开核对的来源 S8–S14（公司自家播客节目页 + RSS、pv magazine / Solar Power World / Latitude Media 的破产报道、搜狐转载的中国光伏行业协会日报），附录 AES 新增 A4–A7（A6 LinkedIn ❌）。
+> - **本轮最重大的新发现（第一轮完全没查到）**：Freedom Forever 在 Claude 故事发布（2026-01-30）约 2.5 个月后，于 **2026-04-15 申请 Chapter 11 破产**，当天约 1,600 名员工被裁；**2026-08-07 转为 Chapter 7 清算** [S10][S12][S13]。这不改变 Claude 原文里的落地事实，但彻底改变了这个案例能不能讲、怎么讲，见第 7 节和推荐指数。
+> - 第一轮摘要有误、已更正的点：ElevenLabs 原链接、ElevenLabs 故事日期与现行措辞（"headcount −50%"只剩在页面 meta 描述和 2025-11-05 的转载里，现行正文已改成"reassigned"）；Raya 新闻稿的"30 多个州"与同稿"29 个州"并存；Sean Otto 在 AES 官网的头衔是"Director of Analytics"。
+> - 中文检索：未找到 36氪 / 机器之心 / 虎嗅 / 雷锋网 对 Freedom Forever × Claude 的中文报道；只找到搜狐转载的中国光伏行业协会日报对其破产的一句话报道 [S14]。
 
 - 行业：能源 / 户用光伏安装（EPC + 施工现场运营），claude.com 行业标签为 Energy [C1]
 - 企业规模 / 地区：约 3,000 名员工（大部分为现场作业和安装队），软件与产品团队 50 人；美国（North America）[C1]；每月处理约 5,000 份许可 [C1]；外部新闻稿摘要称业务覆盖"30 多个州"[S3，仅摘要]
